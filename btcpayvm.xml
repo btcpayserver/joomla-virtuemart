@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<extension version="2.5" type="plugin" group="vmpayment" method="upgrade">
+    <name>BTCPay VM</name>
+    <creationDate>April 2022</creationDate>
+    <author>BTCPay Server</author>
+    <authorUrl>https://www.btcpayserver.org</authorUrl>
+    <copyright>Copyright (C) 2022 BTCPay Server. All rights reserved.</copyright>
+    <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
+    <version>1.0.0</version>
+    <description>BTCPay payment plugin for VirtueMart</description>
+
+    <files>
+        <filename plugin="btcpayvm">btcpayvm.php</filename>
+        <folder>language</folder>
+        <folder>fields</folder>
+        <folder>src</folder>
+        <folder>vendor</folder>
+    </files>
+    <vmconfig>
+        <fields name="params">
+            <fieldset name="btcpayvm" addfieldpath="/plugins/vmpayment/btcpayvm/fields" />
+
+            <fieldset name="basic" addfieldpath="/administrator/components/com_virtuemart/fields">
+                <field type="vmtitle" default="VMPAYMENT_BTCPAYVM_SETUP_SECTION"
+                       description="VMPAYMENT_BTCPAYVM_SETUP_DESC"/>
+
+                <field name="api_url" type="text" label="VMPAYMENT_BTCPAYVM_API_URL"
+                       description="VMPAYMENT_BTCPAYVM_API_URL_DESC" size="50"/>
+                <field name="api_key" type="text" label="VMPAYMENT_BTCPAYVM_API_KEY"
+                       description="VMPAYMENT_BTCPAYVM_API_KEY_DESC" size="50"/>
+                <field name="store_id" type="text" label="VMPAYMENT_BTCPAYVM_STORE_ID"
+                       description="VMPAYMENT_BTCPAYVM_STORE_ID_DESC" size="50"/>
+                <!--
+                <field name="webhook_id" type="text" label="VMPAYMENT_BTCPAYVM_WEBHOOK_ID"
+                       description="VMPAYMENT_BTCPAYVM_WEBHOOK_ID_DESC" size="50"/>
+                -->
+                <field name="webhook_secret" type="text" label="VMPAYMENT_BTCPAYVM_WEBHOOK_SECRET"
+                       description="VMPAYMENT_BTCPAYVM_WEBHOOK_SECRET_DESC" size="50"/>
+
+                <field type="btcpayvminfo" />
+
+                <!-- Payment to order states mapping. -->
+                <field type="vmtitle" default="VMPAYMENT_BTCPAYVM_ORDERSTATES_SECTION"
+                       description="VMPAYMENT_BTCPAYVM_ORDERSTATES_SECTION_DESC"/>
+
+                <field name="status_new" type="vmorderstate"
+                       scope="com_virtuemart" default="P"
+                       label="VMPAYMENT_BTCPAYVM_STATUS_NEW"
+                       description="VMPAYMENT_BTCPAYVM_STATUS_NEW_TIP"
+                />
+
+                <field name="status_processing" type="vmorderstate"
+                       scope="com_virtuemart" default="U"
+                       label="VMPAYMENT_BTCPAYVM_STATUS_PROCESSING"/>
+
+                <field name="status_settled" type="vmorderstate"
+                       scope="com_virtuemart" default="C"
+                       label="VMPAYMENT_BTCPAYVM_STATUS_SETTLED"/>
+
+                <field name="status_expired" type="vmorderstate"
+                       scope="com_virtuemart" default="X"
+                       label="VMPAYMENT_BTCPAYVM_STATUS_EXPIRED"/>
+
+
+                <field name="status_invalid" type="vmorderstate"
+                       scope="com_virtuemart" default="D"
+                       label="VMPAYMENT_BTCPAYVM_STATUS_INVALID"/>
+
+                <!-- todo: implement refunds
+                <field name="status_refunded" type="vmorderstate" scope="com_virtuemart" default="R"
+                       label="VMPAYMENT_BTCPAYVM_STATUS_REFUNDED"/>
+                -->
+
+                <!-- Restrictions section -->
+                <field type="vmtitle" default="VMPAYMENT_BTCPAYVM_RESTRICTIONS_SECTION"
+                       description="VMPAYMENT_BTCPAYVM_RESTRICTIONS_SECTION_DESC"/>
+                <field name="countries" type="vmcountries" scope="com_virtuemart" default=""
+                       label="VMPAYMENT_BTCPAYVM_COUNTRIES" description="VMPAYMENT_BTCPAYVM_COUNTRIES_DESC"/>
+                <field name="min_amount" type="text" label="VMPAYMENT_BTCPAYVM_MIN_AMOUNT"
+                       description="VMPAYMENT_BTCPAYVM_MIN_AMOUNT_TIP"/>
+                <field name="max_amount" type="text" label="VMPAYMENT_BTCPAYVM_MAX_AMOUNT"
+                       description="VMPAYMENT_BTCPAYVM_MAX_AMOUNT_TIP"/>
+
+                <!-- Fees section -->
+                <field type="vmtitle" default="VMPAYMENT_BTCPAYVM_FEE_SECTION"
+                       description="VMPAYMENT_BTCPAYVM_FEE_SECTION_DESC"/>
+                <field name="cost_per_transaction" type="text" label="VMPAYMENT_BTCPAYVM_COST_PER_TRANSACTION"
+                       description="VMPAYMENT_BTCPAYVM_COST_PER_TRANSACTION_EXPLAIN"/>
+                <field name="cost_percent_total" type="text" label="VMPAYMENT_BTCPAYVM_COST_PERCENT_TOTAL"
+                       description="VMPAYMENT_BTCPAYVM_COST_PERCENT_TOTAL_EXPLAIN"/>
+                <field name="tax_id" type="vmtaxes" scope="com_virtuemart" label="VMPAYMENT_BTCPAYVM_TAX"
+                       description="VMPAYMENT_BTCPAYVM_TAX_DESC"/>
+
+                <!-- Other -->
+                <field name="payment_logos" type="vmfiles" label="VMPAYMENT_BTCPAYVM_LOGOS"
+                       description="VMPAYMENT_BTCPAYVM_LOGOS_DESC"
+                       directory="/images/stories/virtuemart/payment"
+                       default="default" hide_default="1" hide_none="1"
+                       stripext="0" exclude="^_"/>
+            </fieldset>
+        </fields>
+    </vmconfig>
+
+</extension>

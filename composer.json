@@ -1,0 +1,23 @@
+{
+    "name": "btcpayserver/btcpay-virtuemart-plugin",
+    "description": "BTCPay Server Virtuemart payment method plugin.",
+    "type": "project",
+    "require": {
+        "btcpayserver/btcpayserver-greenfield-php": "^1.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Btcpayserver\\BtcpayVirtuemartPlugin\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "BTCPay Server",
+            "homepage": "https://btcpayserver.org"
+        },
+        {
+            "name": "ndeet"
+        }
+    ]
+}
