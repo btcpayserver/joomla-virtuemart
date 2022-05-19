@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension version="2.5" type="plugin" group="vmpayment" method="upgrade">
-    <name>BTCPay VM</name>
+    <name>BTCPay for VirtueMart</name>
     <creationDate>April 2022</creationDate>
     <author>BTCPay Server</author>
     <authorUrl>https://www.btcpayserver.org</authorUrl>
