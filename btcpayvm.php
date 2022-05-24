@@ -240,9 +240,8 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
             );
 
         } catch (\Throwable $e) {
-            // Todo: redirect to cart
-            $this->logInfo($e->getMessage(), 'error');
-            return false;
+            $this->logInfo($e->getMessage(), 'error', true);
+            self::redirectToCart('VMPAYMENT_BTCPAYVM_ERROR_CREATING_INVOICE');
         }
 
         /**
@@ -292,7 +291,6 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
         $session->clear('btcpayvm', 'vm');
 
         $cart->emptyCart();
-        //vRequest::setVar('html', $html);
 
         // Redirect to BTCPay Server.
         $app = JFactory::getApplication();
@@ -656,7 +654,7 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
      *
      * @since version
      */
-    function btcPayGetInvoice($virtuemart_paymentmethod_id, $invoice_id)
+    public function btcPayGetInvoice($virtuemart_paymentmethod_id, $invoice_id)
     {
         $method = $this->getVmPluginMethod(
           $virtuemart_paymentmethod_id
@@ -1006,95 +1004,6 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
         return $this->onShowOrderPrint($order_number, $method_id);
     }
 
-    public function createInvoice($order_id, $order_number)
-    {
-        // In case some plugins customizing the order number we need to pass that along, defaults to internal ID.
-        $orderNumber = $order_number;
-        Logger::debug(
-          'Got order number: ' . $orderNumber . ' and order ID: ' . $order_id
-        );
-
-        $metadata = [];
-
-        // Todo: send customer metadata.
-
-        // Set included tax amount.
-        $metadata['taxIncluded'] = $order->get_cart_tax();
-
-        // POS metadata.
-        $metadata['posData'] = $this->preparePosMetadata($order);
-
-        // Checkout options.
-        $checkoutOptions = new InvoiceCheckoutOptions();
-        $redirectUrl = $this->get_return_url($order);
-        $checkoutOptions->setRedirectURL($redirectUrl);
-        Logger::debug('Setting redirect url to: ' . $redirectUrl);
-
-        // Transaction speed.
-        $transactionSpeed = get_option(
-          'btcpay_gf_transaction_speed',
-          'default'
-        );
-        $allowedSpeedValues = [
-          $checkoutOptions::SPEED_HIGH,
-          $checkoutOptions::SPEED_MEDIUM,
-          $checkoutOptions::SPEED_LOWMEDIUM,
-          $checkoutOptions::SPEED_LOW,
-        ];
-        if ($transactionSpeed !== 'default' && in_array(
-            $transactionSpeed,
-            $allowedSpeedValues
-          )) {
-            $checkoutOptions->setSpeedPolicy($transactionSpeed);
-        } else {
-            Logger::debug(
-              'Did not set transaction speed setting, using BTCPay Server store config instead. Invalid value given: ' . $transactionSpeed
-            );
-        }
-
-        // Payment methods.
-        if ($paymentMethods = $this->getPaymentMethods()) {
-            $checkoutOptions->setPaymentMethods($paymentMethods);
-        }
-
-        // Handle payment methods of type "promotion".
-        // Promotion type set 1 token per each quantity.
-        if ($this->getTokenType() === 'promotion') {
-            $currency = $this->primaryPaymentMethod ?? null;
-            $totalFormatted = PreciseNumber::parseInt(
-              $this->getOrderTotalItemsQuantity($order)
-            );
-        } else { // Defaults.
-            $currency = $order->get_currency();
-            $totalFormatted = PreciseNumber::parseString(
-              $order->get_total()
-            ); // unlike method signature suggests, it returns string.
-        }
-
-        // Create the invoice on BTCPay Server.
-        $client = new Invoice($this->apiHelper->url, $this->apiHelper->apiKey);
-        try {
-            $invoice = $client->createInvoice(
-              $this->apiHelper->storeId,
-              $currency,
-              $totalFormatted,
-              $orderNumber,
-              null, // this is null here as we handle it in the metadata.
-              $metadata,
-              $checkoutOptions
-            );
-
-            $this->updateOrderMetadata($order->get_id(), $invoice);
-
-            return $invoice;
-        } catch (\Throwable $e) {
-            Logger::debug($e->getMessage(), true);
-            // todo: should we throw exception here to make sure there is an visible error on the page and not silently failing?
-        }
-
-        return null;
-    }
-
     protected function preparePosMetadata(
       $order_id,
       $order_number,
@@ -1110,6 +1019,18 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
         ];
 
         return json_encode($posData, JSON_THROW_ON_ERROR);
+    }
+
+    /**
+     * Redirect to cart.
+     *
+     * @since 1.0.4
+     */
+    private static function redirectToCart($message = 'VMPAYMENT_BTCPAYVM_ERROR_DEFAULT') {
+        $app = JFactory::getApplication();
+        $app->enqueueMessage(vmText::_($message), 'error');
+        $app->redirect(JRoute::_('index.php?option=com_virtuemart&view=cart&lg=&Itemid=' . vRequest::getInt('Itemid'), false));
+        die();
     }
 
 }
