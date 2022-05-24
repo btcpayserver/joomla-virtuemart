@@ -13,7 +13,6 @@
         <filename plugin="btcpayvm">btcpayvm.php</filename>
         <folder>language</folder>
         <folder>fields</folder>
-        <folder>src</folder>
         <folder>vendor</folder>
     </files>
     <vmconfig>
