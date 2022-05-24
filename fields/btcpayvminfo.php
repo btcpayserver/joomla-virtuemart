@@ -1,6 +1,17 @@
 <?php
+/**
+ * @author        BTCPay Server
+ * @package       VirtueMart
+ * @subpackage    payment
+ * @copyright     Copyright (C) 2022 BTCPay Server. All rights reserved.
+ * @license       http://www.gnu.org/copyleft/gpl.html GNU/GPL
+ */
 
-defined('JPATH_BASE') or die();
+defined('_JEXEC') or die(
+  'Direct Access to ' . basename(
+    __FILE__
+  ) . 'is not allowed.'
+);
 
 jimport('joomla.form.formfield');
 

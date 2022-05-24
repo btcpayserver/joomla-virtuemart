@@ -1,6 +1,5 @@
 <?php
 /**
- * @version       1.0.0
  * @author        BTCPay Server
  * @package       VirtueMart
  * @subpackage    payment
@@ -18,7 +17,7 @@ defined('_JEXEC') or die(
 );
 
 if (!class_exists('vmPSPlugin')) {
-    require(JPATH_VM_PLUGINS . DS . 'vmpsplugin.php');
+    require(JPATH_VM_PLUGINS . DIRECTORY_SEPARATOR . 'vmpsplugin.php');
 }
 
 class plgVMPaymentBTCPayVM extends vmPSPlugin
@@ -160,10 +159,10 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
             return false;
         }
         if (!class_exists('VirtueMartModelOrders')) {
-            require(JPATH_VM_ADMINISTRATOR . DS . 'models' . DS . 'orders.php');
+            require(JPATH_VM_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'orders.php');
         }
         if (!class_exists('VirtueMartModelCurrency')) {
-            require(JPATH_VM_ADMINISTRATOR . DS . 'models' . DS . 'currency.php');
+            require(JPATH_VM_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'currency.php');
         }
 
         $session = JFactory::getSession();
@@ -241,8 +240,8 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
             );
 
         } catch (\Throwable $e) {
-            // Todo: log + show error and redirect to cart
-            var_dump($e->getMessage());
+            // Todo: redirect to cart
+            $this->logInfo($e->getMessage(), 'error');
             return false;
         }
 
@@ -306,13 +305,13 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
     {
 
         if (!class_exists('VirtueMartCart')) {
-            require(JPATH_VM_SITE . DS . 'helpers' . DS . 'cart.php');
+            require(JPATH_VM_SITE . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'cart.php');
         }
         if (!class_exists('shopFunctionsF')) {
-            require(JPATH_VM_SITE . DS . 'helpers' . DS . 'shopfunctionsf.php');
+            require(JPATH_VM_SITE . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'shopfunctionsf.php');
         }
         if (!class_exists('VirtueMartModelOrders')) {
-            require(JPATH_VM_ADMINISTRATOR . DS . 'models' . DS . 'orders.php');
+            require(JPATH_VM_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'orders.php');
         }
 
         $virtuemart_paymentmethod_id = vRequest::getInt('pm', 0);
@@ -529,13 +528,13 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
     {
 
         if (!class_exists('VirtueMartCart')) {
-            require(JPATH_VM_SITE . DS . 'helpers' . DS . 'cart.php');
+            require(JPATH_VM_SITE . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'cart.php');
         }
         if (!class_exists('shopFunctionsF')) {
-            require(JPATH_VM_SITE . DS . 'helpers' . DS . 'shopfunctionsf.php');
+            require(JPATH_VM_SITE . DIRECTORY_SEPARATOR . 'helpers' . DIRECTORY_SEPARATOR . 'shopfunctionsf.php');
         }
         if (!class_exists('VirtueMartModelOrders')) {
-            require(JPATH_VM_ADMINISTRATOR . DS . 'models' . DS . 'orders.php');
+            require(JPATH_VM_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'orders.php');
         }
 
         $order_number = vRequest::getString('on', '');
@@ -686,7 +685,7 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
     function plgVmOnUserPaymentCancel()
     {
         if (!class_exists('VirtueMartModelOrders')) {
-            require(JPATH_VM_ADMINISTRATOR . DS . 'models' . DS . 'orders.php');
+            require(JPATH_VM_ADMINISTRATOR . DIRECTORY_SEPARATOR . 'models' . DIRECTORY_SEPARATOR . 'orders.php');
         }
         $order_number = vRequest::getString('on', '');
         $virtuemart_paymentmethod_id = vRequest::getInt('pm', '');

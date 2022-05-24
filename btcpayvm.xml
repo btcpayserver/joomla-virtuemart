@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <extension version="2.5" type="plugin" group="vmpayment" method="upgrade">
-    <name>BTCPay for VirtueMart</name>
+    <name>VM Payment - BTCPay for VirtueMart</name>
     <creationDate>April 2022</creationDate>
     <author>BTCPay Server</author>
     <authorUrl>https://www.btcpayserver.org</authorUrl>
     <copyright>Copyright (C) 2022 BTCPay Server. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <description>BTCPay payment plugin for VirtueMart</description>
 
     <files>
@@ -21,6 +21,9 @@
             <fieldset name="btcpayvm" addfieldpath="/plugins/vmpayment/btcpayvm/fields" />
 
             <fieldset name="basic" addfieldpath="/administrator/components/com_virtuemart/fields">
+
+                <field type="note" heading="h4" label="VMPAYMENT_BTCPAYVM_SETUP_SECTION_INFO" />
+
                 <field type="vmtitle" default="VMPAYMENT_BTCPAYVM_SETUP_SECTION"
                        description="VMPAYMENT_BTCPAYVM_SETUP_DESC"/>
 
@@ -46,7 +49,6 @@
                 <field name="status_new" type="vmorderstate"
                        scope="com_virtuemart" default="P"
                        label="VMPAYMENT_BTCPAYVM_STATUS_NEW"
-                       description="VMPAYMENT_BTCPAYVM_STATUS_NEW_TIP"
                 />
 
                 <field name="status_processing" type="vmorderstate"

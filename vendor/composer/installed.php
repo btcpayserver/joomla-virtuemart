@@ -1,22 +1,22 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-master',
+        'version' => 'dev-master',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => '6f76938d03a724b203facd99bcfa55a42ebc4de0',
         'name' => 'btcpayserver/btcpay-virtuemart-plugin',
         'dev' => true,
     ),
     'versions' => array(
         'btcpayserver/btcpay-virtuemart-plugin' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-master',
+            'version' => 'dev-master',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => '6f76938d03a724b203facd99bcfa55a42ebc4de0',
             'dev_requirement' => false,
         ),
         'btcpayserver/btcpayserver-greenfield-php' => array(
