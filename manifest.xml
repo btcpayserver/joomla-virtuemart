@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<updates>
+    <update>
+        <name>BTCPay for VirtueMart</name>
+        <description><![CDATA[A VirtueMart (Version 3 and 4) payment method plugin to integrate with BTCPay Server as a payment processor.]]></description>
+        <element>btcpayvm</element>
+        <type>plugin</type>
+        <folder>vmpayment</folder>
+        <version>1.0.2</version>
+        <client>site</client>
+        <infourl title="BTCPay for VirtueMart">https://github.com/btcpayserver/joomla-virtuemart/releases/tag/v1.0.2</infourl>
+        <downloads>
+            <downloadurl type="full" format="zip">https://github.com/btcpayserver/joomla-virtuemart/releases/download/v1.0.2/btcpayvm.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+        <targetplatform name="joomla" version="3.([789]|10)" />
+        <php_minimum>7.4.0</php_minimum>
+    </update>
+</updates>

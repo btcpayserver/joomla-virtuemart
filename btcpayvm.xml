@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<extension version="2.5" type="plugin" group="vmpayment" method="upgrade">
+<extension version="3.1" type="plugin" group="vmpayment" method="upgrade">
     <name>VM Payment - BTCPay for VirtueMart</name>
     <creationDate>April 2022</creationDate>
     <author>BTCPay Server</author>
     <authorUrl>https://www.btcpayserver.org</authorUrl>
     <copyright>Copyright (C) 2022 BTCPay Server. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <description>BTCPay payment plugin for VirtueMart</description>
 
     <files>
@@ -102,5 +102,8 @@
             </fieldset>
         </fields>
     </vmconfig>
-
+    <updateservers>
+        <!-- Note: No spaces or linebreaks allowed between the server tags -->
+        <server type="extension" name="BTPay for VirtueMart Update Site">https://raw.githubusercontent.com/btcpayserver/joomla-virtuemart/master/manifest.xml</server>
+    </updateservers>
 </extension>
