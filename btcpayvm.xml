@@ -103,6 +103,6 @@
     </vmconfig>
     <updateservers>
         <!-- Note: No spaces or linebreaks allowed between the server tags -->
-        <server type="extension" name="BTPay for VirtueMart Update Site">https://raw.githubusercontent.com/btcpayserver/joomla-virtuemart/master/manifest.xml</server>
+        <server type="extension" name="BTCPay for VirtueMart Update Site">https://raw.githubusercontent.com/btcpayserver/joomla-virtuemart/master/manifest.xml</server>
     </updateservers>
 </extension>
