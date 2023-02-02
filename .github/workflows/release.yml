@@ -27,4 +27,6 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
           artifacts: 'btcpayvm.zip'
+          removeArtifacts: true
+          allowUpdates: true
           token: ${{ secrets.GITHUB_TOKEN }}
