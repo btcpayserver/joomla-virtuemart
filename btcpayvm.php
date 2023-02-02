@@ -789,7 +789,7 @@ class plgVMPaymentBTCPayVM extends vmPSPlugin
             $cost_percent_total = $method->cost_percent_total;
         }
 
-        return ($method->cost_per_transaction + ($cart_prices['salesPrice'] * $cost_percent_total * 0.01));
+        return ((float) $method->cost_per_transaction + ((float) $cart_prices['salesPrice'] * (float) $cost_percent_total * 0.01));
     }
 
     /**

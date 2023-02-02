@@ -6,7 +6,7 @@
     <authorUrl>https://www.btcpayserver.org</authorUrl>
     <copyright>Copyright (C) 2022 BTCPay Server. All rights reserved.</copyright>
     <license>http://www.gnu.org/licenses/gpl-3.0.html GNU/GPL</license>
-    <version>1.0.4</version>
+    <version>1.0.5</version>
     <description>BTCPay payment plugin for VirtueMart</description>
 
     <files>

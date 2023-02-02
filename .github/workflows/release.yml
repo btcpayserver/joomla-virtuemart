@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       # Composer install not needed as long as we have the vendor/ directory committed.
       #- name: Install Composer dependencies
       #  uses: php-actions/composer@v6
